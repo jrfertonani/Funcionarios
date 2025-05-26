@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class employeesService {
 
@@ -22,7 +24,10 @@ public class employeesService {
         EmployeesEntity entity = new EmployeesEntity();
         BeanUtils.copyProperties(request, entity);
         return repository.save(entity).getId();
+    }
 
+    public List<EmployeesEntity> getAllEmployees(){
+        return repository.findAll();
     }
 
 }
