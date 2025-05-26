@@ -24,5 +24,5 @@ public class Employees implements Serializable {
 
     private String name;
     private String email;
-    
+
 }
