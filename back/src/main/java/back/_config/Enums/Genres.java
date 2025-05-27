@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public enum Genres {
     // aqui são os enums
-    ACAO(0,"AÇÃO"),
-    COMEDIA(1,"COMEDIA"),
-    AVENTURA(2,"AVENTURA");
+    ACAO(0,"JUNIOR"),
+    COMEDIA(1,"PLENO"),
+    AVENTURA(2,"SENIOR");
 
     //aqui as instancias
     private final Integer codigo;
