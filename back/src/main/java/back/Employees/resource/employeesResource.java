@@ -26,12 +26,12 @@ public class employeesResource {
 
 
     @PostMapping
-    public ResponseEntity<employeesRequest> postEmployees(@RequestBody employeesRequest DTO){
+    public ResponseEntity<employeesRequest> postEmployees(@RequestBody employeesRequest request){
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(
-                        service.createEmployees(DTO)).toUri();
-                        return ResponseEntity.created(uri).body(DTO);
+                        service.createEmployees(request)).toUri();
+                        return ResponseEntity.created(uri).body(request);
     }
 
     @GetMapping
@@ -43,6 +43,26 @@ public class employeesResource {
                                 ).toList());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<employeesRequest> getIdEmployees(@PathVariable Integer id ){
+        return ResponseEntity.ok().body(
+                service.findByIdEmployees(id)
+        );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<employeesRequest> updateEmployees(@PathVariable Integer id,
+                                                          @RequestBody employeesRequest request){
+        request.setId(id);
+        EmployeesEntity obj = service.update(id, request);
+        return ResponseEntity.ok().body(request);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<employeesRequest> deleteEmployees(@PathVariable Integer id ){
+        service.deleteByIdEmployees(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
