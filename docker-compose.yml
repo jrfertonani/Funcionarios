@@ -1,0 +1,44 @@
+version: '3.9'
+services:
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - app-employees
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/funcionarios
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    networks:
+      - app-employees
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: funcionarios
+    volumes:
+      - mysql-employees:/var/lib/mysql
+    networks:
+      - app-employees
+
+networks:
+  app-employees:
+    driver: bridge
+
+volumes:
+  mysql-employees:
