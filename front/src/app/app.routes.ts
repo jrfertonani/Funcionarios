@@ -7,9 +7,9 @@ import { EmployeesUpdateComponent } from './components/employees/employees-updat
 export const routes: Routes = [
 
 {path:'', component: HomeComponent},
-{path:'/employees',component: EmployeesListComponent},
-{path:'/employees/create',component: EmployeesCreateComponent},
-{path:'/employees/:id',component: EmployeesUpdateComponent},
+{path:'employees',component: EmployeesListComponent},
+{path:'employees/create',component: EmployeesCreateComponent},
+{path:'employees/:id',component: EmployeesUpdateComponent},
 
 
 
