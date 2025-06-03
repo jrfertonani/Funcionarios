@@ -1,6 +1,7 @@
-export interface Employees{
+export interface Employees {
   id?: number;
   name: string;
+  email: string;
   status: string;
 
 
