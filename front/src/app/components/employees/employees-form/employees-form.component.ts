@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Employees } from '../../../model/Employees';
 
 @Component({
   selector: 'app-employees-form',
@@ -10,8 +11,19 @@ import { RouterModule } from '@angular/router';
 })
 export class EmployeesFormComponent implements OnInit{
 
+  @Input() dataEmployees : Employees | null = null;
 
-  ngOnInit(): void {  }
+  employeesForm! : FormGroup;
+
+  ngOnInit(): void {
+
+    this.employeesForm = new FormGroup({
+      id: new FormGroup(this.dataEmployees? this.dataEmployees.id : 0 ),
+      email: new FormGroup(this.dataEmployees? this.dataEmployees.email : ""),
+      status: new FormGroup(this.dataEmployees?this.dataEmployees.status : "")
+    })
+   }
+
 
 
 
