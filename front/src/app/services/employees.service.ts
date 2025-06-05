@@ -19,4 +19,9 @@ export class EmployeesService {
     return this.http.get<Employees[]>(this.URL);
   }
 
+  registerEmployees(employee: Employees): Observable<Employees>{
+    return this.http.post<Employees>(this.URL,employee);
+  }
+
+
 }

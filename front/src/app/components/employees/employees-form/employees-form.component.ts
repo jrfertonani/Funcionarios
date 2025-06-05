@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Employees } from '../../../model/Employees';
@@ -11,6 +11,8 @@ import { Employees } from '../../../model/Employees';
 })
 export class EmployeesFormComponent implements OnInit{
 
+  @Output() onSubmit = new EventEmitter<Employees>();
+
   @Input() dataEmployees : Employees | null = null;
 
   employeesForm! : FormGroup;
@@ -19,6 +21,7 @@ export class EmployeesFormComponent implements OnInit{
 
     this.employeesForm = new FormGroup({
       id: new FormGroup(this.dataEmployees? this.dataEmployees.id : 0 ),
+      name: new FormGroup(this.dataEmployees? this.dataEmployees.name : ""),
       email: new FormGroup(this.dataEmployees? this.dataEmployees.email : ""),
       status: new FormGroup(this.dataEmployees?this.dataEmployees.status : "")
     })
@@ -26,6 +29,9 @@ export class EmployeesFormComponent implements OnInit{
 
 
 
+   submit(){
+    this.onSubmit.emit(this.employeesForm.value);
+   }
 
 
 }

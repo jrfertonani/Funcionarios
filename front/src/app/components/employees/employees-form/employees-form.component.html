@@ -1,6 +1,6 @@
 <div class="containar mt-5">
   <h1>Title</h1>
-  <form >
+  <form [formGroup]="employeesForm" (ngSubmit)="submit()" #formDit="ngForm">
     <div class="mt-3">
       <label for="form-label">Name</label>
       <input type="text" placeholder="put a name" class="form-Control" controlName="name">
