@@ -9,4 +9,8 @@ import { EmployeesFormComponent } from "../employees-form/employees-form.compone
 })
 export class EmployeesUpdateComponent {
 
+  btnAcao = "Create";
+
+  descTitulo = "Update employees";
+
 }

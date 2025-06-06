@@ -11,6 +11,10 @@ import { Employees } from '../../../model/Employees';
 })
 export class EmployeesFormComponent implements OnInit{
 
+  @Input() btnAcao!: string;
+
+  @Input() descTitulo!: string;
+
   @Output() onSubmit = new EventEmitter<Employees>();
 
   @Input() dataEmployees : Employees | null = null;
@@ -18,12 +22,11 @@ export class EmployeesFormComponent implements OnInit{
   employeesForm! : FormGroup;
 
   ngOnInit(): void {
-
     this.employeesForm = new FormGroup({
-      id: new FormGroup(this.dataEmployees? this.dataEmployees.id : 0 ),
-      name: new FormGroup(this.dataEmployees? this.dataEmployees.name : ""),
-      email: new FormGroup(this.dataEmployees? this.dataEmployees.email : ""),
-      status: new FormGroup(this.dataEmployees?this.dataEmployees.status : "")
+      id: new FormGroup(this.dataEmployees ? this.dataEmployees.id : 0 ),
+      name: new FormGroup(this.dataEmployees ? this.dataEmployees.name : ""),
+      email: new FormGroup(this.dataEmployees ? this.dataEmployees.email : ""),
+      status: new FormGroup(this.dataEmployees ? this.dataEmployees.status : "")
     })
    }
 
@@ -32,6 +35,7 @@ export class EmployeesFormComponent implements OnInit{
    submit(){
     this.onSubmit.emit(this.employeesForm.value);
    }
+
 
 
 }

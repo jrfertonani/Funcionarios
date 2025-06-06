@@ -12,18 +12,21 @@ import { Router } from '@angular/router';
   styleUrl: './employees-create.component.css'
 })
 
-export class EmployeesCreateComponent implements OnInit{
+export class EmployeesCreateComponent {
+
+  btnAcao = "Create";
+
+  descTitulo = "Register employees "
 
   constructor(private serviceEmployer: EmployeesService, private router: Router){}
 
 
-  ngOnInit(): void {
-  }
+
 
 
 createEmployees(employees: Employees){
   this.serviceEmployer.registerEmployees(employees).subscribe(employees => {
-      this.router.navigate(['employees'])
+      this.router.navigate(['/employees'])
   })
 }
 
